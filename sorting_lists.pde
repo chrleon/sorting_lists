@@ -13,7 +13,6 @@ usage = new float[5];
 browserIndices = new HashMap();
 storage = new FloatDict();
 setupStats();
-generateStats();
 rankBrowsers();
 //browserIndex("chrome");
 //println(browserIndices);
@@ -30,9 +29,9 @@ void setupStats(){
   }
   println("storage: " + storage.get("chrome"));
   println(random(40));
-  println(storage);
+  //println(storage);
   storage.sortValues();
-  println(storage.values());
+  //println(storage.values());
   
 }
 
@@ -50,15 +49,15 @@ void rankBrowsers(){
   float[] theValues = storage.valueArray();
   int fontSize = 18;
   float lineHeight = 1.5;
-  float yPos = 0;
-  float xPos = 0;
+  float yPos = 50;
+  float xPos = 25;
   textSize(18);
   for(int i = 0; i < theNames.length; i++){
-    // print the name
+       yPos += fontSize + lineHeight * i;
+ // print the name
     // print the usage
     text(theNames[i] + " " + theValues[i], xPos, yPos);
     // set the ypos
-    yPos = fontSize * lineHeight * i;
   }
 }
 
@@ -73,5 +72,13 @@ int browserIndex(String name) {
 
 
 void draw(){
+  background(200);
   rankBrowsers();  
+  generateStats();
+
+}
+
+void mouseMoved(){
+  setupStats();
+  generateStats();
 }
